@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baqtiyaa Nasiib</title>
+  <style>
+    /* General reset and body styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f7fc;
+      color: #333;
+    }
+
+    /* Container for the button and result */
+    .container {
+      text-align: center;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    /* Button styling */
+    #spinButton {
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    #spinButton:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+    }
+    #spinButton:active {
+      transform: scale(1);
+    }
+
+    /* Result section styling */
+    .result {
+      font-size: 2em;
+      margin-top: 20px;
+      color: #333;
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    /* Fade-in effect for result */
+    .result.visible {
+      opacity: 1;
+    }
+
+    /* Alert styling */
+    .alert {
+      font-size: 1.1em;
+      color: #d9534f;
+      margin-top: 10px;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    /* Fade-in effect for alert */
+    .alert.visible {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <button id="spinButton">Riix Linkiga</button>
+  <div id="result" class="result"></div>
+  <div id="alert" class="alert"></div>
+</div>
+
+<script>
+  let hasClicked = false;
+
+  document.getElementById('spinButton').addEventListener('click', function() {
+    if (!hasClicked) {
+      // Generate random number between 1 and 8
+      const randomNumber = Math.floor(Math.random() * 8) + 1;
+      
+      // Show result with fade-in effect
+      const resultElement = document.getElementById('result');
+      resultElement.textContent = `Natiijadaada waa: ${randomNumber}`;
+      resultElement.classList.add('visible');
+
+      // Disable button and change text
+      hasClicked = true;
+      this.disabled = true;
+      this.textContent = 'Waxaad horay u riixday';
+
+    } else {
+      // Show alert for second click attempt
+      const alertElement = document.getElementById('alert');
+      alertElement.textContent = 'Waxaad horay u riixday linkiga!';
+      alertElement.classList.add('visible');
+    }
+  });
+</script>
+
+</body>
+</html>
